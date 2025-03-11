@@ -4,19 +4,16 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-'''
-f1_
-'''
+# f1_
 grader_preferences = pd.read_excel(os.getenv('FILE1')).dropna(how="all")
-'''
-f2_
-iloc[1:] is used to skip the first row, which is a dummy row that is not needed.
-'''
+
+# f2_
+# iloc[1:] is used to skip the first row, which is a dummy row that is not needed.
 grader_info = pd.read_excel(os.getenv('FILE2')).dropna(how="all").iloc[1:].reset_index(drop=True)
-'''
-f3_
-'''
+
+# f3_
 classes = pd.read_excel(os.getenv('FILE3')).dropna(how="all")
+
 
 def format_courses_taught(courses: str) -> list[str]:
     return [course.strip() for course in courses.split("\n") if course.strip()]
@@ -32,6 +29,8 @@ def print_info():
 def print_classes():
     for idx, row in classes.iterrows():
         print(f"idx: {idx}, Class: {row[col.f3_crn]}, Department: {row[col.f3_department]}, Course Name: {row[col.f3_course_title]}, Days: {row[col.f3_days]}, Time: {row[col.f3_times]}")
+
+
 
 if __name__ == "__main__":
     print_preferences()
