@@ -1,13 +1,15 @@
 ''' Column Names
 File1-Spring-2025-TA-Graders-PhD_Master-information
-['Unnamed: 0',
- 'Headcount',
- 'FTE count',
- 'Applicant Name (first name last name) ',
- 'Research Advisor\'s Name (first name last name) ',
- 'Do you have TA Experience in CS department at TTU? If yes, when?',
- 'List the courses that you want to be a TA in the order from highest preference to lowest. For each course you listed, you must have taken it before and include your grade. Example of format: 5383(A), 6345(B). ''before and include your grade. Example of format: 5383(A), 6345(B). ']
 '''
+idx1 = {
+  'Unnamed: 0': 0,
+  'Headcount': 1,
+  'FTE count': 2,
+  'Applicant Name (first name last name) ': 3,
+  'Research Advisor\'s Name (first name last name) ': 4,
+  'Do you have TA Experience in CS department at TTU? If yes, when?': 5,
+  'List the courses that you want to be a TA in the order from highest preference to lowest. For each course you listed, you must have taken it before and include your grade. Example of format: 5383(A), 6345(B). ''before and include your grade. Example of format: 5383(A), 6345(B). ': 6
+}
 f1_headcount = 'Headcount'
 f1_FTE = 'FTE count'
 f1_grader_name = 'Applicant Name (first name last name) '
@@ -18,12 +20,14 @@ f1_course_pref = 'List the courses that you want to be a TA in the order from hi
 
 ''' Column Names
 File2-TA_Grader Avail and Preferences and special request from instrutors - 2025
-['TA grader name ',
- 'Time/day of the class TA/grader has to attend in spring 2025',
- 'Course you are taking spring 2025 ',
- 'course you have taught (as TA/grader/GPTI)\nSemester + course code',
- 'Notes']
 '''
+idx2 = {
+  'TA grader name ': 0,
+  'Time/day of the class TA/grader has to attend in spring 2025': 1,
+  'Course you are taking spring 2025 ': 2,
+  'course you have taught (as TA/grader/GPTI)\nSemester + course code': 3,
+  'Notes': 4
+}
 f2_grader_name = 'TA grader name '
 f2_class_times = 'Time/day of the class TA/grader has to attend in spring 2025'
 f2_grader_courses = 'Course you are taking spring 2025 '
@@ -33,30 +37,32 @@ f2_notes = 'Notes'
 
 ''' Column Names
 File3-Open_Classes_Report_01-10-2025_09.19.41_PM
-['CRN',
- 'Subject Title',
- 'Subject Code',
- 'Course Number',
- 'Section Number',
- 'Course Title',
- 'Days',
- 'Times',
- 'Start Date',
- 'End Date',
- 'Campus',
- 'Building',
- 'Room Number',
- 'Instructor',
- 'Max Enrollment',
- 'Current Enrollment',
- 'Seats Available',
- 'Wait Capacity',
- 'Wait Count',
- 'Wait Available',
- 'Section Type',
- 'Available for Visiting Students',
- 'Linked To']
 '''
+idx3 = {
+  'CRN': 0,
+  'Subject Title': 1,
+  'Subject Code': 2,
+  'Course Number': 3,
+  'Section Number': 4,
+  'Course Title': 5,
+  'Days': 6,
+  'Times': 7,
+  'Start Date': 8,
+  'End Date': 9,
+  'Campus': 10,
+  'Building': 11,
+  'Room Number': 12,
+  'Instructor': 13,
+  'Max Enrollment': 14,
+  'Current Enrollment': 15,
+  'Seats Available': 16,
+  'Wait Capacity': 17,
+  'Wait Count': 18,
+  'Wait Available': 19,
+  'Section Type': 20,
+  'Available for Visiting Students': 21,
+  'Linked To': 22
+}
 f3_crn = 'CRN'
 f3_department = 'Subject Title'
 f3_subject_code = 'Subject Code'
