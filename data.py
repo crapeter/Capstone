@@ -5,6 +5,10 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+'''
+This class is used to load the data from the excel files.
+This class is used to split the data into undergrad and grad courses. It also splits the students between masters and phd. The data is stored in pandas dataframes
+'''
 class Data:
 	def __init__(self):
 		self.FILE1 = col.idx1

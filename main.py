@@ -17,6 +17,10 @@ import pandas as pd
 import column_names as col
 from data import Data
 
+# TODO: get this to work
+'''
+This is the main function, it's where the program will run
+'''
 def main():
     data = Data()
     print("PhD students:")
