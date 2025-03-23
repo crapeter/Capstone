@@ -12,20 +12,11 @@ Output:
     2. The excel file should have the columns: Course Number, Section Number (1 or 2), Instructor, Assignment (TA/grader), Course Title, Days, Times, BUilding, Room Number
 '''
 
-from pprint import pprint
+# from pprint import pprint
 import pandas as pd
 import column_names as col
-from data import Data
 
-def main():
-    data = Data()
-    print("PhD students:")
-    for s in data.phd_students.values.tolist():
-        print(s)
-    print()
-    print("Masters students:")
-    for s in data.masters_students.values.tolist():
-        print(s)
+# get hours: (course_num % 1000) // 100
 
-if __name__ == "__main__":
-    main()
+class Assign:
+	pass
