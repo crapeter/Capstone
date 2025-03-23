@@ -17,7 +17,7 @@ import pandas as pd
 import column_names as col
 
 
-# TODO:
+# TODO: get this to work
 '''
 This class will be where the sorting algorithms will be implemented, following the restraints at the top of this file.
 It will take in the data from the Data class and output the sorted data.
