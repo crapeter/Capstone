@@ -32,27 +32,42 @@ class Assign:
 
 	# TODO: implement this function to check if the assignment is viable, following the rules at the top of this file.
 	def is_viable(self, ta, course):
-		return True
+		weight = 0
+		return True, weight
 
 	def create_graph(self):
 		# Add nodes for TAs/graders, bipartite=0
 		for _, ta in self.data.ta_grader_avail.iterrows():
 			self.graph.add_node(ta[col.s1_grader_name], bipartite=0)  
 
-		# Add nodes for courses with their section numbers as unique identifiers, bipartite=1
+		# Add nodes for grad courses with their section numbers as unique identifiers, bipartite=1
 		for _, course in self.data.grad_courses.iterrows():
 			course_id = f"{course[col.f3_course_number]}-{course[col.f3_section_number]}"
 			self.graph.add_node(course_id, bipartite=1)  
 
+		# Add nodes for undergrad courses with their section numbers as unique identifiers, bipartite=1
+		for _, course in self.data.undergrad_courses.iterrows():
+			course_id = f"{course[col.f3_course_number]}-{course[col.f3_section_number]}"
+			self.graph.add_node(course_id, bipartite=1)
+
 		# Add edges between TAs/graders and courses if the assignment is viable
 		for _, ta in self.data.ta_grader_avail.iterrows():
-			for _, course in self.data.grad_courses.iterrows():
+			# If the TA is a PhD student, then they are allowed to TA for graduate level courses.
+			if ta[col.s1_grader_name] in self.data.phd_students[col.s1_grader_name].values:
+				for _, course in self.data.grad_courses.iterrows():
+					course_id = f"{course[col.f3_course_number]}-{course[col.f3_section_number]}"
+					viable, weight = self.is_viable(ta, course)
+					if viable:
+						self.graph.add_edge(ta[col.s1_grader_name], course_id, weight)
+
+			for _, course in self.data.undergrad_courses.iterrows():
 				course_id = f"{course[col.f3_course_number]}-{course[col.f3_section_number]}"
-				if self.is_viable(ta, course):
-					self.graph.add_edge(ta[col.s1_grader_name], course_id)
+				viable, weight = self.is_viable(ta, course)
+				if viable:
+					self.graph.add_edge(ta[col.s1_grader_name], course_id, weight=weight)
 
 	def assign_ta_graders(self):
-		matching = nx.bipartite.maximum_matching(self.graph)
+		matching = nx.algorithms.matching.max_weight_matching(self.graph, maxcardinality=True)
 
 		# Convert matching to a list of assignments
 		assignments = []
