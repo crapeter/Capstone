@@ -1,4 +1,3 @@
-# from pprint import pprint
 import pandas as pd
 import column_names as col
 import os
@@ -11,10 +10,11 @@ This class is used to split the data into undergrad and grad courses. It also sp
 '''
 class Data:
 	def __init__(self):
+		# Loads dictionaries from column_names.py to access column names via dot notation.
 		self.FILE1 = col.f1
 		self.FILE2_S1 = col.s1
-		self.FILE2_S2 = col.s1
-		self.FILE2_S3 = col.s1
+		self.FILE2_S2 = col.s2
+		self.FILE2_S3 = col.s3
 		self.FILE3 = col.f3
 
 		# f1_
@@ -24,9 +24,11 @@ class Data:
 		self.grader_info = pd.read_excel(os.getenv('FILE2'), sheet_name=None)
 
 		# these are the sheets of the second file
-		self.ta_grader_avail = self.grader_info['TAgraderAvail'].dropna(how="all").iloc[1:].reset_index(drop=True) #s1
-		self.ta_grader_preferred_courses = self.grader_info['TA grader preferred courses'].dropna(how="all").iloc[3:].reset_index(drop=True) #s2
-		self.special_request_from_courses = self.grader_info['special request from courses'].dropna(how="all").iloc[1:].reset_index(drop=True) #s3
+		self.sheet_names = list(self.grader_info.keys()) # ['TA grader availability', 'TA grader preferred courses', 'special request from courses']
+
+		self.ta_grader_avail = self.grader_info[self.sheet_names[0]].dropna(how="all").iloc[1:].reset_index(drop=True) #s1
+		self.ta_grader_preferred_courses = self.grader_info[self.sheet_names[1]].dropna(how="all").iloc[3:].reset_index(drop=True) #s2
+		self.special_request_from_courses = self.grader_info[self.sheet_names[2]].dropna(how="all").iloc[1:].reset_index(drop=True) #s3
 
 		# f3_
 		self.classes = pd.read_excel(os.getenv('FILE3')).dropna(how="all")
