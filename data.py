@@ -11,18 +11,22 @@ This class is used to split the data into undergrad and grad courses. It also sp
 '''
 class Data:
 	def __init__(self):
-		self.FILE1 = col.idx1
-		self.FILE2 = col.idx2
-		self.FILE3 = col.idx3
+		self.FILE1 = col.f1
+		self.FILE2_S1 = col.s1
+		self.FILE2_S2 = col.s1
+		self.FILE2_S3 = col.s1
+		self.FILE3 = col.f3
 
 		# f1_
 		self.general_info = pd.read_excel(os.getenv('FILE1')).dropna(how="all")
 
-		# f2_, iloc[1:] is used to skip the first row, which is a dummy row that is not needed.
+		# iloc[1:] is used to skip the first row, which is a dummy row that is not needed.
 		self.grader_info = pd.read_excel(os.getenv('FILE2'), sheet_name=None)
-		self.ta_grader_avail = self.grader_info['TAgraderAvail'].dropna(how="all").iloc[1:].reset_index(drop=True)
-		self.ta_grader_preferred_courses = self.grader_info['TA grader preferred courses'].dropna(how="all").iloc[1:].reset_index(drop=True)
-		self.special_request_from_courses = self.grader_info['special request from courses'].dropna(how="all").iloc[1:].reset_index(drop=True)
+
+		# these are the sheets of the second file
+		self.ta_grader_avail = self.grader_info['TAgraderAvail'].dropna(how="all").iloc[1:].reset_index(drop=True) #s1
+		self.ta_grader_preferred_courses = self.grader_info['TA grader preferred courses'].dropna(how="all").iloc[3:].reset_index(drop=True) #s2
+		self.special_request_from_courses = self.grader_info['special request from courses'].dropna(how="all").iloc[1:].reset_index(drop=True) #s3
 
 		# f3_
 		self.classes = pd.read_excel(os.getenv('FILE3')).dropna(how="all")

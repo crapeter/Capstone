@@ -1,7 +1,5 @@
-''' Column Names
-File1-Spring-2025-TA-Graders-PhD_Master-information
-'''
-idx1 = {
+#-First File-------------------------------------------------------------------------
+f1 = {
   'Unnamed: 0': 0,
   'Headcount': 1,
   'FTE count': 2,
@@ -17,28 +15,52 @@ f1_advisor = 'Research Advisor\'s Name (first name last name) '
 f1_grader_exp = 'Do you have TA Experience in CS department at TTU? If yes, when?'
 f1_course_pref = 'List the courses that you want to be a TA in the order from highest preference to lowest. For each course you listed, you must have taken it before and include your grade. Example of format: 5383(A), 6345(B). '
 
-
-''' Column Names
-File2-TA_Grader Avail and Preferences and special request from instrutors - 2025
-'''
-idx2 = {
+#-Second File, Sheet 1---------------------------------------------------------------
+s1 = {
   'TA grader name ': 0,
   'Time/day of the class TA/grader has to attend in spring 2025': 1,
   'Course you are taking spring 2025 ': 2,
   'course you have taught (as TA/grader/GPTI)\nSemester + course code': 3,
   'Notes': 4
 }
-f2_grader_name = 'TA grader name '
-f2_class_times = 'Time/day of the class TA/grader has to attend in spring 2025'
-f2_grader_courses = 'Course you are taking spring 2025 '
-f2_taught_courses = 'course you have taught (as TA/grader/GPTI)\nSemester + course code'
-f2_notes = 'Notes'
+s1_grader_name = 'TA grader name '
+s1_class_times = 'Time/day of the class TA/grader has to attend in spring 2025'
+s1_grader_courses = 'Course you are taking spring 2025 '
+s1_taught_courses = 'course you have taught (as TA/grader/GPTI)\nSemester + course code'
+s1_notes = 'Notes'
 
+#-Second File, Sheet 2---------------------------------------------------------------
+s2 = {
+  '2025-TA/Grader Teaching Preference and Constraint - Spring 2025': 0,
+  'Unnamed: 1': 1,
+  'Unnamed: 2': 2,
+  'Unnamed: 3': 3,
+  'Unnamed: 4': 4,
+  'Unnamed: 5': 5,
+  'Unnamed: 6': 6,
+}
+s2_course_codes = '2025-TA/Grader Teaching Preference and Constraint - Spring 2025'
+s2_sections = 'Unnamed: 1'
+s2_course_titles = 'Unnamed: 2'
+s2_days = 'Unnamed: 3'
+s2_times = 'Unnamed: 4'
+s2_prefered_courses = 'Unnamed: 5'
+s2_taken_courses = 'Unnamed: 6'
 
-''' Column Names
-File3-Open_Classes_Report_01-10-2025_09.19.41_PM
-'''
-idx3 = {
+#-Second File, Sheet 2---------------------------------------------------------------
+s3 = {
+  'Course code + instructor': 0,
+  'request description ': 1,
+  'request preferenece': 2,
+  'Response  (type your name + note) ': 3,
+}
+s3_instructor = 'Course code + instructor'
+s3_request_description = 'request description '
+s3_request_preference = 'request preferenece'
+s3_response = 'Response  (type your name + note) '
+
+#-Third File-------------------------------------------------------------------------
+f3 = {
   'CRN': 0,
   'Subject Title': 1,
   'Subject Code': 2,
