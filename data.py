@@ -26,9 +26,10 @@ class Data:
 		# these are the sheets of the second file
 		self.sheet_names = list(self.grader_info.keys()) # ['TA grader availability', 'TA grader preferred courses', 'special request from courses']
 
-		self.ta_grader_avail = self.grader_info[self.sheet_names[0]].dropna(how="all").iloc[1:].reset_index(drop=True) #s1
-		self.ta_grader_preferred_courses = self.grader_info[self.sheet_names[1]].dropna(how="all").iloc[3:].reset_index(drop=True) #s2
-		self.special_request_from_courses = self.grader_info[self.sheet_names[2]].dropna(how="all").iloc[1:].reset_index(drop=True) #s3
+		self.ta_grader_avail = self.grader_info[self.sheet_names[0]].dropna(how="all") #s1
+		self.ta_grader_preferred_courses = self.grader_info[self.sheet_names[1]].dropna(how="all") #s2
+		self.special_request_from_courses = self.grader_info[self.sheet_names[2]].dropna(how="all") #s3
+		self.ta_grader_avail, self.ta_grader_preferred_courses, self.special_request_from_courses = self.remove_temp_data()
 
 		# f3_
 		self.classes = pd.read_excel(os.getenv('FILE3')).dropna(how="all")
@@ -50,3 +51,24 @@ class Data:
 	def split_grader_info(self, gr_info, g_info):
 		general_filter = g_info[col.f1_advisor].isna() | (g_info[col.f1_advisor].str.strip() == '')
 		return gr_info.loc[general_filter], gr_info.loc[~general_filter]
+
+	def remove_temp_data(self):
+		# Remove temporary row for ta_grader_avail that only applies to the original data given
+		if self.ta_grader_avail.iloc[0, 0].strip() == 'John Doe':
+			ta_a = self.grader_info[self.sheet_names[0]].dropna(how="all").iloc[1:].reset_index(drop=True) #s1
+		else:
+			ta_a = self.grader_info[self.sheet_names[0]].dropna(how="all").reset_index(drop=True) #s1
+
+		# Remove temporary rows for ta_grader_preferred_courses that only applies to the original data given
+		if not str(self.ta_grader_preferred_courses.iloc[0, 0]).strip()[0].isdigit():
+			ta_p = self.grader_info[self.sheet_names[1]].dropna(how="all").iloc[3:].reset_index(drop=True) #s2
+		else:
+			ta_p = self.grader_info[self.sheet_names[1]].dropna(how="all").reset_index(drop=True) #s2
+
+		# Remove temporary rows for special_request_from_courses that only applies to the original data given
+		if not self.special_request_from_courses.iloc[0, 0].strip()[0].isdigit():
+			s_r = self.grader_info[self.sheet_names[2]].dropna(how="all").iloc[1:].reset_index(drop=True) #s3
+		else:
+			s_r = self.grader_info[self.sheet_names[2]].dropna(how="all").reset_index(drop=True)
+		
+		return ta_a, ta_p, s_r
