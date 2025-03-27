@@ -47,6 +47,16 @@ s2_times = 'Unnamed: 4'
 s2_prefered_courses = 'Unnamed: 5'
 s2_taken_courses = 'Unnamed: 6'
 
+def change_sheet2_vals():
+  global s2_course_codes, s2_sections, s2_course_titles, s2_days, s2_times, s2_prefered_courses, s2_taken_courses
+  s2_course_codes = 'Course Codes'
+  s2_sections = 'Sections'
+  s2_course_titles = 'Course Titles'
+  s2_days = 'Days'
+  s2_times = 'Times'
+  s2_prefered_courses = 'Preferred Courses'
+  s2_taken_courses = 'Taken Courses'
+
 #-Second File, Sheet 2---------------------------------------------------------------
 s3 = {
   'Course code + instructor': 0,
